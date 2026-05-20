@@ -1,0 +1,80 @@
+@startuml Diagrama de Classes ModeloApp
+
+class Description{
+  -category: Char
+  -description: Text
+  +toString()
+}
+
+class Game{
+  -name: Char
+  -brand: Text 
+  -launch_date: Date
+  -price: Decimal
+  -description: ForegnKey[Description]
+  +toString()
+}
+
+class Orderitem{
+  -unitary_price: Decimal 
+  -game: ForegnKey[Game]
+  -order: ForegnKey[Order]
+  +toString()
+}
+
+class Order{
+  -payment_method: CharChoices
+  -status: CharChoices
+  -player: ForegnKey[Player]
+  -employee: ForegnKey[Employee]
+  +toString()
+}
+
+class Ticket{
+  -number: Char
+  -problem: Char
+  -issue_date: Date 
+  -order: OneToOne[Order]
+  +toString()
+}
+
+class Player{
+  -gender: CharChoices
+  -nickname: Char
+  -socialnetwork: ManyToMany[Socialnetwork]
+  +toString()
+}
+
+class Support{
+  -salary: Char
+  -position: Decimal 
+  +toString()
+}
+
+class Person{
+  -first_name: Char
+  -last_name: Char
+  -address: Char
+  -phone: Char
+  -email: Email
+  +toString()
+}
+
+class Socialnetwork{
+  -name: Char
+  -content_type: Text
+  -url: Char
+  +toString()
+}
+
+Game <--* Description : 1..n
+Player --> Order : 1..n
+Support--> Ticket : 1..n
+Order --> Orderitem : 0..n
+Order--> Ticket : 1..1
+Game --> Orderitem : 0..n
+Player--> Socialnetwork : n..n
+Player -up-|> Person: 1..1
+Support -up-|> Person: 1..1
+
+@enduml

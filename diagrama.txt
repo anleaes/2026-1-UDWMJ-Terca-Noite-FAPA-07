@@ -1,110 +1,80 @@
-@startuml DiagramaZeroWasteAlchemist
+@startuml Diagrama de Classes ModeloApp
 
-class Person {
+class Description{
+  -category: Char
+  -description: Text
+  +toString()
+}
+
+class Game{
+  -name: Char
+  -brand: Text 
+  -launch_date: Date
+  -price: Decimal
+  -description: ForegnKey[Description]
+  +toString()
+}
+
+class Orderitem{
+  -unitary_price: Decimal 
+  -game: ForegnKey[Game]
+  -order: ForegnKey[Order]
+  +toString()
+}
+
+class Order{
+  -payment_method: CharChoices
+  -status: CharChoices
+  -player: ForegnKey[Player]
+  -employee: ForegnKey[Employee]
+  +toString()
+}
+
+class Ticket{
+  -number: Char
+  -problem: Char
+  -issue_date: Date 
+  -order: OneToOne[Order]
+  +toString()
+}
+
+class Player{
+  -gender: CharChoices
+  -nickname: Char
+  -socialnetwork: ManyToMany[Socialnetwork]
+  +toString()
+}
+
+class Support{
+  -salary: Char
+  -position: Decimal 
+  +toString()
+}
+
+class Person{
   -first_name: Char
   -last_name: Char
-  -email: Email
+  -address: Char
   -phone: Char
+  -email: Email
   +toString()
 }
 
-class Player {
-  -username: Char
-  -level: Integer
-  -current_xp: Integer
-  -gold_balance: Decimal
-  -reputation_score: Integer
-  +calculateLevel()
-}
-
-class Category {
+class Socialnetwork{
   -name: Char
-  -description: Text
-  -storage_tips: Text
-  -icon_identifier: Char
+  -content_type: Text
+  -url: Char
   +toString()
 }
 
-class Ingredient {
-  -name: Char
-  -brand: Text
-  -expiration_date: Date
-  -quantity: Decimal
-  -unit_of_measure: Char
-  -is_organic: Boolean
-  -category: ForeignKey[Category]
-  -location: ForeignKey[StorageLocation]
-  +checkFreshness()
-}
-
-class StorageLocation {
-  -name: Char
-  -type: CharChoices
-  -temperature_setting: Decimal
-  -capacity_liters: Decimal
-  +toString()
-}
-
-class Recipe {
-  -title: Char
-  -instructions: Text
-  -difficulty: Integer
-  -prep_time_minutes: Integer
-  -xp_reward: Integer
-  +toString()
-}
-
-class IngredientRequirement {
-  -required_quantity: Decimal
-  -unit: Char
-  -recipe: ForeignKey[Recipe]
-  -ingredient_name: Char
-  +checkAvailability()
-}
-
-class Achievement {
-  -title: Char
-  -description: Text
-  -rarity_level: CharChoices
-  -xp_bonus: Integer
-  +toString()
-}
-
-class Mission {
-  -title: Char
-  -objective: Text
-  -deadline: DateTime
-  -reward_gold: Integer
-  -is_completed: Boolean
-  +toString()
-}
-
-class AlchemyLog {
-  -activity_date: DateTime
-  -action_type: CharChoices
-  -points_gained: Integer
-  -waste_saved_grams: Decimal
-  -player: ForeignKey[Player]
-  +toString()
-}
-
-class PlayerAchievement {
-  -unlock_date: Date
-  -progress_percentage: Decimal
-  -player: ForeignKey[Player]
-  -achievement: ForeignKey[Achievement]
-  +toString()
-}
-
-' Relacionamentos e Herança
-Player -up-|> Person : 1..1
-Ingredient "n" -- "1" Category : pertence a
-Ingredient "n" -- "1" StorageLocation : armazenado em
-Player "1" *-- "n" Ingredient : possui
-Recipe "1" *-- "n" IngredientRequirement : exige
-Player "1" *-- "n" AlchemyLog : registra
-Player "1" *-- "n" Mission : participa
-Player "1" *-- "n" PlayerAchievement : desbloqueia
-Achievement "1" *-- "n" PlayerAchievement : concedida em
+Game <--* Description : 1..n
+Player --> Order : 1..n
+Support--> Ticket : 1..n
+Order --> Orderitem : 0..n
+Order--> Ticket : 1..1
+Game --> Orderitem : 0..n
+Player--> Socialnetwork : n..n
+Player -up-|> Person: 1..1
+Support -up-|> Person: 1..1
 
 @enduml

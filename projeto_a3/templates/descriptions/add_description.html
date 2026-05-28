@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Adicionar Descrição - {{ block.super }}
+{% endblock %}
+
+{% block body %}
+  <br />
+  <b>Cadastro de Descrição</b>
+  <br />
+  <br />
+  <form action="" method="POST">
+    {% csrf_token %}
+    <label>Categoria:</label>
+    <br />
+    {{ form.category }}
+    <br />
+    <br />
+    <label>Descrição:</label>
+    <br />
+    {{ form.description }}
+    <br />
+    <br />
+    <button type="submit">Salvar</button>
+  </form>
+{% endblock %}

@@ -12,7 +12,16 @@ def add_description(request):
             f = form.save(commit=False)
             f.save()
             form.save_m2m()
-            return redirect('core:home')
+            return redirect('descriptions:list_descriptions')
     form = DescriptionForm()
     context['form'] = form
+    return render(request, template_name, context)
+
+
+def list_descriptions(request):
+    template_name = 'descriptions/list_descriptions.html'
+    descriptions = Description.objects.filter()
+    context = {
+        'descriptions': descriptions
+    }
     return render(request, template_name, context)

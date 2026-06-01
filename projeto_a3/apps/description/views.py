@@ -39,3 +39,8 @@ def edit_description(request, id_description):
     form = DescriptionForm(instance=description)
     context['form'] = form
     return render(request, template_name, context)
+
+def delete_description(request, id_description):
+    description = Description.objects.get(id=id_description)
+    description.delete()
+    return redirect('descriptions:list_descriptions')

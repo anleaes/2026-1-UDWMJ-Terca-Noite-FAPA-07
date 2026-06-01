@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import DescriptionForm
 from .models import Description
 
@@ -24,4 +24,18 @@ def list_descriptions(request):
     context = {
         'descriptions': descriptions
     }
+    return render(request, template_name, context)
+
+
+def edit_description(request, id_description):
+    template_name = 'descriptions/add_description.html'
+    context ={}
+    description = get_object_or_404(Description, id=id_description)
+    if request.method == 'POST':
+        form = DescriptionForm(request.POST, instance=description)
+        if form.is_valid():
+            form.save()
+            return redirect('descriptions:list_descriptions')
+    form = DescriptionForm(instance=description)
+    context['form'] = form
     return render(request, template_name, context)

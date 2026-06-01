@@ -6,6 +6,9 @@
 
 {% block body %}
   <br />
+  <a href="{% url 'descriptions:add_description' %}">Cadastro de nova descrição</a>
+  <br />
+  <br />
   <b>Lista de Descrições</b>
   <br />
   <br />
@@ -15,6 +18,8 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Descricao</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +28,12 @@
           <th>{{ description.id }}</th>
           <td>{{ description.category }}</td>
           <td>{{ description.description }}</td>
+          <td>
+            <a href="{% url 'descriptions:edit_description' description.id %}">Editar</a>
+          </td>
+          <td>
+            <a href="{% url 'descriptions:delete_description' description.id %}" >Excluir</a>
+          </td>
         </tr>
       {% endfor %}
     </tbody>

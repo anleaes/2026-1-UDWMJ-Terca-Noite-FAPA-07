@@ -1,20 +1,26 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/arquivo_com_estilos.css' %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/arquivo_com_estilos.css' %}" />
     <title>{% block title %}Nome do meu App{% endblock title %}</title>
-</head>
-<body>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <a href="{% url 'descriptions:list_descriptions' %}">Descrições</a>
+      </li>
+      <li><a href="#">Produtos</a></li>
+      <li><a href="#">Clientes</a></li>
+      <li><a href="#">Pedidos</a></li>
+    </ul>
 
-    {% block body %}
-    
-    {% endblock body %}
-    
+    {% block body %} {% endblock body %}
+
     <script src="{% static 'js/arquivo_com_javascript.js' %}"></script>
-</body>
+  </body>
 </html>

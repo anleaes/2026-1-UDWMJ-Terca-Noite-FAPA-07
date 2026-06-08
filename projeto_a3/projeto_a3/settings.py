@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'games.apps.GamesConfig',
     'socialnetworks.apps.SocialnetworksConfig',
     'persons.apps.PersonsConfig',
+    'players.apps.PlayersConfig',
+
 ]
 
 MIDDLEWARE = [

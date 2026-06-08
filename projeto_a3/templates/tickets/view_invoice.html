@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/arquivo_com_estilos.css' %}">
+    <title>Nota Fiscal - {{ ticket.number }}</title>
+</head>
+<body>
+<div class="ticket_container">
+    <h2 class="ticket_h2">NOTA FISCAL</h2>
+    <div class="ticket_box">
+        <b>Número:</b> {{ ticket.number }}<br>
+        <b>Data:</b> {{ ticket.issue_date }}
+    </div>
+    <div class="ticket_box">
+        <b>Jogador:</b>
+        {{ order.player.first_name }} {{ order.player.last_name }}<br>
+        <b>Funcionário:</b>
+        {{ order.support.first_name }} {{ order.support.last_name }}
+    </div>
+    <div class="ticket_box">
+        <h3>Itens</h3>
+        <table class="ticket_table ">
+            <thead>
+                <tr>
+                    <th class="ticket_th">Produto</th>
+                    <th class="ticket_th">Qtd</th>
+                    <th class="ticket_th">Preço</th>
+                    <th class="ticket_th">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td class="ticket_td">{{ item.game.name }}</td>
+                    <td class="ticket_td">{{ item.quantity }}</td>
+                    <td class="ticket_td">{{ item.unit_price }}</td>
+                    <td class="ticket_td">{{ item.subtotal }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="ticket_box">
+        <b>Total:</b> {{ order.total }}
+    </div>
+</div>
+</body>
+</html> 

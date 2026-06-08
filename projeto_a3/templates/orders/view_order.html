@@ -12,9 +12,19 @@
         {{ order.player.first_name }} {{ order.player.last_name }}
     {% endif %}
 <br />
-<b>Funcionário:</b>
-    {% if order.employee %}
-        {{ order.employee.first_name }} {{ order.employee.last_name }}
+<b>Suporte:</b>
+    {% if order.support %}
+        {{ order.support.first_name }} {{ order.support.last_name }}
+    {% endif %}
+<br />
+<b>Nota Fiscal:</b>
+    {% if order.ticket %}
+        <a href="{% url 'tickets:view_ticket' order.ticket.id %}" target="_blank" rel="noopener noreferrer">
+            {{ order.ticket.number }}
+        </a>
+        - {{ order.ticket.issue_date }}
+    {% else %}
+        Não gerada
     {% endif %}
 <br />
 <b>Status:</b> {{ order.get_status_display }}

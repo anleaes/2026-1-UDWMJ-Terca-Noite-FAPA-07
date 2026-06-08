@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'players.apps.PlayersConfig',
     'orders.apps.OrdersConfig',
     'orderitems.apps.OrderitemsConfig',
+    'tickets.apps.TicketsConfig',
 ]
 
 MIDDLEWARE = [

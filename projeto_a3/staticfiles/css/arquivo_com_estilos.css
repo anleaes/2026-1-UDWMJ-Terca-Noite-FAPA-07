@@ -1,4 +1,4 @@
-body {
+.core_body {
   background-color: rgb(190, 198, 202);
 }
 
@@ -13,3 +13,30 @@ button:hover {
   background-color: rgb(0, 0, 0);
 }
 
+.ticket_container { 
+  width: 700px; 
+  margin: auto; 
+}
+
+.ticket_box { 
+  border: 1px solid #000; 
+  padding: 10px; 
+  margin-bottom: 10px; 
+}
+
+.ticket_h2 { 
+  text-align: center; 
+} 
+
+.ticket_table { 
+  width: 100%; border-collapse: collapse; 
+}
+
+.ticket_table, .ticket_th, .ticket_td { 
+  border: 1px solid black; 
+}
+
+.ticket_th, .ticket_td { 
+  padding: 5px; 
+  text-align: center; 
+}

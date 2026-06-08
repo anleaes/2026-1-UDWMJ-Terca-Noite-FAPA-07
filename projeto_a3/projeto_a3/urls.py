@@ -21,6 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('tickets/', include('tickets.urls', namespace='tickets')),
     path('pedidos/', include('orders.urls', namespace='orders')),
     path('jogadores/', include('players.urls', namespace='players')),
     path('redessociais/', include('socialnetworks.urls', namespace='socialnetworks')),

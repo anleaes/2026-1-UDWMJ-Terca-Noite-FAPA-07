@@ -3,6 +3,7 @@ from orders.models import Order
 from orderitems.models import Orderitem
 from games.models import Game
 from players.models import Player
+from tickets.views import create_ticket_for_order
 
 # Create your views here.
 def list_orders(request):
@@ -121,6 +122,7 @@ def checkout(request):
             total_order += subtotal
         order.total = total_order
         order.save()
+        create_ticket_for_order(order)
         request.session['cart'] = {}
         request.session.modified = True
         return redirect('orders:view_order', order_id=order.id)

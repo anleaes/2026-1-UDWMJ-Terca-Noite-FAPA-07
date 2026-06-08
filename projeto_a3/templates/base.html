@@ -19,6 +19,13 @@
     <a href="#" ><button onclick="alertarMensagem()">Pedidos</button></a>
     <br />
 
+    <br />
+      <form action="{% url 'players:search_players' %}" method="GET">
+      <input name="query" type="text" placeholder="Sobrenome do jogador" aria-label="Buscar">
+      <button type="submit">Buscar</button>
+    </form>
+
+
     {% block body %}
     
     {% endblock body %}

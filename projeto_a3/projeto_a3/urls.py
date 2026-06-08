@@ -21,6 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('jogos/', include('games.urls', namespace='games')),
     path('', include('core.urls', namespace='core')),
     path('descricoes/', include('description.urls', namespace='descriptions')),
 ]

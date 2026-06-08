@@ -16,7 +16,8 @@
     <a href="{% url 'games:list_games' %}" ><button onclick="alertarMensagem()">Games</button></a>
     <a href="{% url 'players:list_players' %}" ><button onclick="alertarMensagem()">Jogadores</button></a>
     <a href="{% url 'socialnetworks:list_socialnetworks' %}" ><button onclick="alertarMensagem()">Redes Sociais</button></a>
-    <a href="#" ><button onclick="alertarMensagem()">Pedidos</button></a>
+   <a href="{% url 'orders:list_orders' %}" ><button>Pedidos</button></a>
+    <a href="{% url 'orders:list_items_games' %}" ><button>Compras</button></a>
     <br />
 
     <br />

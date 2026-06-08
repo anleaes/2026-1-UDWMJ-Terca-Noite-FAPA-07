@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/arquivo_com_estilos.css' %}" />
     <title>{% block title %}Nome do meu App{% endblock title %}</title>
   </head>
-  <body>
+  <body class="core_body">
     <a href="{% url 'core:home' %}" ><img src="{% static 'img/menu.png' %}" width="200" height="60" /></a>
     <br />
     <a href="{% url 'descriptions:list_descriptions' %}"><button onclick="alertarMensagem()"></button>Descrições</a>

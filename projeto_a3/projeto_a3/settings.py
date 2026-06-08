@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'socialnetworks.apps.SocialnetworksConfig',
     'persons.apps.PersonsConfig',
     'players.apps.PlayersConfig',
+    'supports.apps.SupportsConfig',
     'orders.apps.OrdersConfig',
     'orderitems.apps.OrderitemsConfig',
     'tickets.apps.TicketsConfig',

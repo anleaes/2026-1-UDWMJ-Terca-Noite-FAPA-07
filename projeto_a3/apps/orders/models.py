@@ -18,6 +18,7 @@ class Order(models.Model):
     ])
     total = models.FloatField('Preco Total', null=True, blank=True, default=0.0)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    # support = models.ForeignKey(Support, on_delete=models.CASCADE)
     
     class Meta:
         verbose_name = 'Pedido'

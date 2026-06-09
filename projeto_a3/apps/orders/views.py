@@ -9,7 +9,7 @@ from tickets.views import create_ticket_for_order
 # Create your views here.
 def list_orders(request):
     template_name = 'orders/list_orders.html'
-    orders = Order.objects.select_related('player', 'support').all()
+    orders = Order.objects.select_related('player').all()
     context = {
         'orders': orders,
     }

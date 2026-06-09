@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Adicionar Game - {{ block.super }}
+
+{% endblock title %}
+
+{% block body %}
+
+<br />
+<b>Cadastro de Game</b>
+<br />
+<br />
+<form action="" method="POST" enctype="multipart/form-data"> 
+{% csrf_token %}
+    <label>Nome</label>
+    <br />
+    {{ form.name }}
+    <br />
+    <br />
+    <label>Descricao</label>
+    <br />
+    {{ form.description}}
+    <br />
+    <br />
+    <label>Data de lançamento</label>
+    <br />
+    {{ form.launch_date}}
+    <br />
+    <br />
+    <label>Preço</label>
+    <br />
+    {{ form.price }}
+    <br />
+    <br />
+    <label>Marca</label>
+    <br />
+    {{ form.brand }}
+    <br />
+    <br />
+    <button type="submit">Salvar</button>       
+</form>
+
+{% endblock body %}

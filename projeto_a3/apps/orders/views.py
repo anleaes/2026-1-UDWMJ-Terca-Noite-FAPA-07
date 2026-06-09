@@ -9,7 +9,7 @@ from tickets.views import create_ticket_for_order
 # Create your views here.
 def list_orders(request):
     template_name = 'orders/list_orders.html'
-    orders = Order.objects.select_related('player', 'support').all()
+    orders = Order.objects.select_related('player').all()
     context = {
         'orders': orders,
     }
@@ -18,7 +18,7 @@ def list_orders(request):
 
 def list_items_games(request):
     template_name = 'orders/list_items_games.html'
-    games = Game.objects.filter(is_active=True)
+    games = Game.objects.filter()
     context = {
         'games': games,
     }
@@ -96,28 +96,28 @@ def checkout(request):
     supports = Support.objects.all()
     if request.method == 'POST':
         player_id = request.POST.get('player')
-        support_id = request.POST.get('support')
+        # support_id = request.POST.get('support')
         payment_method = request.POST.get('payment_method')
         player = get_object_or_404(Player, id=player_id)
-        support = get_object_or_404(Support, id=support_id)
+        # support = get_object_or_404(Support, id=support_id)
         order = Order.objects.create(
             player=player,
-            support=support,
+            # support=support,
             payment_method=payment_method,
             status='Finalizado',
             total=0
         )
         total_order = 0.0
         for product_id, item in cart.items():
-            product = get_object_or_404(Product, id=product_id)
-            quantity = int(item['quantity'])
-            unit_price = float(item['price'])
+            # product = get_object_or_404(Product, id=product_id)
+            # quantity = int(item['quantity'])
+            # unit_price = float(item['price'])
             subtotal = unit_price * quantity
             Orderitem.objects.create(
                 order=order,
-                product=product,
-                quantity=quantity,
-                unit_price=unit_price,
+                # product=product,
+                # quantity=quantity,
+                # unit_price=unit_price,
                 subtotal=subtotal
             )
             total_order += subtotal
@@ -131,7 +131,7 @@ def checkout(request):
         'cart': cart,
         'total': total,
         'players': players,
-        'supports': supports,
+        # 'supports': supports,
         'payment_methods': Order._meta.get_field('payment_method').choices,
     }
     return render(request, template_name, context)

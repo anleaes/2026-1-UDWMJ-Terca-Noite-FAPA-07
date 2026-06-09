@@ -39,7 +39,6 @@
     <thead>
         <tr>
             <th>Jogo</th>
-            <th>Quantidade</th>
             <th>Preço Unitário</th>
             <th>Subtotal</th>
         </tr>
@@ -48,12 +47,11 @@
         {% for item in items %}
         <tr>
             <td>
-                {% if item.product %}
-                    {{ item.product.name }}
+                {% if item.game %}
+                    {{ item.game.name }}
                 {% endif %}
             </td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.unit_price }}</td>
+            <td>{{ item.uni_price }}</td>
             <td>{{ item.subtotal }}</td>
         </tr>
         {% empty %}

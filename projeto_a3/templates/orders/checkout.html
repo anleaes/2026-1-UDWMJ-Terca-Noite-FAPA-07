@@ -18,10 +18,10 @@
     <br />
     <br />
     <label>Funcionário:</label>
-    <select name="employee" required>
+    <select name="support" required>
         <option value="">Selecione</option>
-        {% for employee in employees %}
-            <option value="{{ employee.id }}">{{ employee.first_name }} {{ employee.last_name }}</option>
+        {% for support in supports %}
+            <option value="{{ support.id }}">{{ support.first_name }} {{ support.last_name }}</option>
         {% endfor %}
     </select>
     <br />
@@ -40,7 +40,6 @@
             <tr>
                 <th>Jogo</th>
                 <th>Preço</th>
-                <th>Quantidade</th>
                 <th>Subtotal</th>
             </tr>
         </thead>
@@ -49,7 +48,6 @@
             <tr>
                 <td>{{ item.name }}</td>
                 <td>{{ item.price }}</td>
-                <td>{{ item.quantity }}</td>
                 <td>{{ item.subtotal }}</td>
             </tr>
             {% endfor %}

@@ -27,20 +27,6 @@
             <td>{{ game.price }}</td>
             <td>{{ game.category }}</td>
             <td>
-                {% if game.photo %}
-                     <a href="{{ game.photo.url }}" target="_blank" rel="noopener noreferrer"><img src="{{ game.photo.url }}" width="80"></a>
-                {% else %}
-                    Sem foto
-                {% endif %}
-            </td>
-            <td>
-                {% if game.doc %}
-                    <a href="{{ game.doc.url }}" target="_blank" rel="noopener noreferrer">Baixar</a>
-                {% else %}
-                    Sem documento
-                {% endif %}
-            </td>
-            <td>
                 <a href="{% url 'orders:add_cart' game.id %}">Adicionar</a>
             </td>
         </tr>

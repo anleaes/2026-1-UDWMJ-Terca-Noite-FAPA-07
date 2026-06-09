@@ -24,14 +24,9 @@
     {{ form.description}}
     <br />
     <br />
-    <label>Data de fabricacao</label>
+    <label>Data de lançamento</label>
     <br />
-    {{ form.fabrication_date}}
-    <br />
-    <br />
-    <label>Ativar</label>
-    <br />
-    {{ form.is_active }}
+    {{ form.launch_date}}
     <br />
     <br />
     <label>Preço</label>
@@ -39,91 +34,12 @@
     {{ form.price }}
     <br />
     <br />
-    <label>Foto</label>
+    <label>Marca</label>
     <br />
-    {{ form.photo }}
-    <br />
-    <br />
-    <label>Documentos</label>
-    <br />
-    {{ form.doc }}
-    <br />
-    <br />
-    <label>Categoria</label>
-    <br />
-    {{ form.category }}
+    {{ form.brand }}
     <br />
     <br />
     <button type="submit">Salvar</button>       
 </form>
-
-{% endblock body %}
-
-# Criar um arquivo "list_games.html" com as informacoes em lista dos games adicionados.
-
-{% extends 'base.html' %}
-
-{% block title %}
-
-    Lista de Games - {{ block.super }}
-
-{% endblock title %}
-
-{% block body %}
-
-<br />
-    <a href="{% url 'games:add_game' %}">Cadastro de novo Game</a>
-<br />
-<br />
-<b>Lista de Games</b>
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Descricao</th>
-            <th>Data de fabricacao</th>
-            <th>Ativo</th>
-            <th>Preço</th>
-            <th>Foto</th>
-            <th>Documento</th>
-            <th>Categoria</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for game in games %}
-            <tr>
-                <td>{{ game.id }}</th>
-                <td>{{ game.name }}</td>
-                <td>{{ game.description }}</td>
-                <td>{{ game.fabrication_date }}</td>
-                <td>
-                {% if game.is_active == True %}
-                    Ativo
-                {% endif %}
-                {% if game.is_active == False %}
-                    Inativo
-                {% endif %}
-                </td>
-                <td>{{ game.price }}</td>
-                <td>
-                <img src="{{ game.photo.url }}" width="80">
-                </td>
-                <td>
-                    <a href="{{ game.doc.url }}" >{{ game.doc.url }}</a>
-                </td>
-                <td>{{ game.category }}</td>
-                <td>
-                    <a href="{% url 'games:edit_game' game.id %}" >Editar</a>
-                </td>
-                <td>    
-                    <a href="{% url 'games:delete_game' game.id %}" >Excluir</a>
-                </td>
-            </tr> 
-        {% endfor %}
-    </tbody>
-</table>
 
 {% endblock body %}

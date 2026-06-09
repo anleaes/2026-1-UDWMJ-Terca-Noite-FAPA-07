@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Lista de Joagadores - {{ block.super }}
+
+{% endblock title %}
+
+{% block body %}
+
+<br />
+    <a href="{% url 'players:add_player' %}">Cadastro de novo Joagador</a>
+<br />
+<br />
+<b>Lista de Joagadores</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Endereco</th>
+        <th>Telefone</th>
+        <th>E-mail</th>
+        <th>Genero</th>
+        <th>Redes sociais</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for player in players %}
+        <tr>
+            <td>{{ player.id }}</td>
+            <td>{{ player.first_name }}</td>
+            <td>{{ player.last_name }}</td>
+            <td>{{ player.address }}</td>
+            <td>{{ player.phone }}</td>
+            <td>{{ player.email }}</td>
+            <td>{{ player.gender }}</td>
+            <td>
+                <ul>
+                {% for socialnetwork in player.socialnetwork.all %}
+                    <li>{{ socialnetwork.name }}</li>
+                {% empty %}
+                    <li>Sem redes</li>
+                {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <a href="{% url 'players:edit_player' player.id %}">Editar</a>
+            </td>
+            <td>
+                <a href="{% url 'players:delete_player' player.id %}">Excluir</a>
+            </td>
+        </tr> 
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock body %}

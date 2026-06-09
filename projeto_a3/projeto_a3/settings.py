@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'orderitems.apps.OrderitemsConfig',
     'tickets.apps.TicketsConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [

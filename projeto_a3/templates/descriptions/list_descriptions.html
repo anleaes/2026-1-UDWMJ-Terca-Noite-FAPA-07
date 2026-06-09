@@ -11,7 +11,7 @@
   <br />
   <b>Lista de Descrições</b>
   <br />
-    <a href="{% url 'categories:add_category' %}">Cadastro de novo categoria</a>
+    <a href="{% url 'descriptions:add_description' %}">Cadastro de novo descrição</a>
   <br />
   <table border="1">
     <thead>
@@ -27,7 +27,7 @@
       {% for description in descriptions %}
         <tr>
           <th>{{ description.id }}</th>
-          <td>{{ description.category }}</td>
+          <td>{{ description.description }}</td>
           <td>{{ description.description }}</td>
           <td>
             <a href="{% url 'descriptions:edit_description' description.id %}">Editar</a>

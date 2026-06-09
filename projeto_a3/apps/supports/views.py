@@ -28,7 +28,7 @@ def list_supports(request):
 def edit_support(request, id_support):
     template_name = 'supports/add_support.html'
     context ={}
-    support = get_object_or_404(support, id=id_support)
+    support = get_object_or_404(Support, id=id_support)
     if request.method == 'POST':
         form = SupportForm(request.POST, instance=support)
         if form.is_valid():

@@ -3,12 +3,13 @@ from orders.models import Order
 from orderitems.models import Orderitem
 from games.models import Game
 from players.models import Player
+from supports.models import Support
 from tickets.views import create_ticket_for_order
 
 # Create your views here.
 def list_orders(request):
     template_name = 'orders/list_orders.html'
-    orders = Order.objects.select_related('player', 'employee').all()
+    orders = Order.objects.select_related('player', 'support').all()
     context = {
         'orders': orders,
     }
@@ -38,7 +39,7 @@ def cart(request):
 
 
 def add_cart(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
+    product = get_object_or_404(Game, id=product_id)
     cart = request.session.get('cart', {})
     pid = str(product.id)
     if pid in cart:
@@ -92,16 +93,16 @@ def checkout(request):
     for key, item in cart.items():
         total += float(item['subtotal'])
     players = Player.objects.all()
-    employees = Employee.objects.all()
+    supports = Support.objects.all()
     if request.method == 'POST':
         player_id = request.POST.get('player')
-        employee_id = request.POST.get('employee')
+        support_id = request.POST.get('support')
         payment_method = request.POST.get('payment_method')
         player = get_object_or_404(Player, id=player_id)
-        employee = get_object_or_404(Employee, id=employee_id)
+        support = get_object_or_404(Support, id=support_id)
         order = Order.objects.create(
             player=player,
-            employee=employee,
+            support=support,
             payment_method=payment_method,
             status='Finalizado',
             total=0
@@ -130,7 +131,7 @@ def checkout(request):
         'cart': cart,
         'total': total,
         'players': players,
-        'employees': employees,
+        'supports': supports,
         'payment_methods': Order._meta.get_field('payment_method').choices,
     }
     return render(request, template_name, context)

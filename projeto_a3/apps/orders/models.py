@@ -1,5 +1,6 @@
 from django.db import models
 from players.models import Player
+from supports.models import Support
 
 # Create your models here.
 class Order(models.Model):

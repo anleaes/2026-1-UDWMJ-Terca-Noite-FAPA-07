@@ -28,7 +28,6 @@
             <thead>
                 <tr>
                     <th class="ticket_th">Produto</th>
-                    <th class="ticket_th">Qtd</th>
                     <th class="ticket_th">Preço</th>
                     <th class="ticket_th">Subtotal</th>
                 </tr>
@@ -37,8 +36,7 @@
                 {% for item in items %}
                 <tr>
                     <td class="ticket_td">{{ item.game.name }}</td>
-                    <td class="ticket_td">{{ item.quantity }}</td>
-                    <td class="ticket_td">{{ item.unit_price }}</td>
+                    <td class="ticket_td">{{ item.uni_price }}</td>
                     <td class="ticket_td">{{ item.subtotal }}</td>
                 </tr>
                 {% endfor %}

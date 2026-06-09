@@ -15,8 +15,6 @@
             <th>Descrição</th>
             <th>Preço</th>
             <th>Categoria</th>
-            <th>Foto</th>
-            <th>Documento</th>
             <th>Ação</th>
         </tr>
     </thead>
@@ -53,58 +51,4 @@
         {% endfor %}
     </tbody>
 </table>
-{% endblock %}
-
-
-# Criar um arquivo "cart.html" com as informacoes em lista 
-# dos items adicionados no carrinho de pedidos/compras.
-
-{% extends 'base.html' %}
-
-{% block body %}
-<br />
-<a href="{% url 'orders:list_items_games' %}">Continuar comprando</a>
-<br />
-<br />
-<b>Carrinho</b>
-<br />
-<br />
-{% if cart %}
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID Jogo</th>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-            <th>Subtotal</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for game_id, item in cart.items %}
-        <tr>
-            <td>{{ game_id }}</td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.price }}</td>
-            <td>
-                <form method="post" action="{% url 'orders:edit_cart' game_id %}">
-                    {% csrf_token %}
-                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
-                    <button type="submit">Atualizar</button>
-                </form>
-            </td>
-            <td>{{ item.subtotal }}</td>
-            <td>
-                <a href="{% url 'orders:delete_cart' game_id %}">Remover</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<h3>Total: {{ total }}</h3>
-<a href="{% url 'orders:checkout' %}">Finalizar Pedido</a>
-{% else %}
-<p>Carrinho vazio.</p>
-{% endif %}
 {% endblock %}

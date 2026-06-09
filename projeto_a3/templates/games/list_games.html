@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Lista de Games - {{ block.super }}
+
+{% endblock title %}
+
+{% block body %}
+
+<br />
+    <a href="{% url 'games:add_game' %}">Cadastro de novo Game</a>
+<br />
+<br />
+<b>Lista de Games</b>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descricao</th>
+            <th>Data de lançamento</th>
+            <th>Preço</th>
+            <th>Marca</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for game in games %}
+            <tr>
+                <td>{{ game.id }}</th>
+                <td>{{ game.name }}</td>
+                <td>{{ game.description }}</td>
+                <td>{{ game.launch_date }}</td>
+                <td>{{ game.price }}</td>
+                <td>{{ game.brand }}</td>
+
+                    <a href="{% url 'games:edit_game' game.id %}" >Editar</a>
+                </td>
+                <td>    
+                    <a href="{% url 'games:delete_game' game.id %}" >Excluir</a>
+                </td>
+            </tr> 
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock body %}

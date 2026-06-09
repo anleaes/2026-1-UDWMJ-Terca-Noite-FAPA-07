@@ -10,12 +10,23 @@
     <title>{% block title %}Nome do meu App{% endblock title %}</title>
   </head>
   <body class="core_body">
+    {% if user.is_authenticated %}
+    <br />
+Voce está logado como: {{ user.get_full_name|default:user.username }}
+    <br />
+    <a href="{% url 'accounts:user_change_information' user.username %}"><button>Conta</button></a>
+    <a href="{% url 'accounts:user_change_password' %}"><button>Trocar senha</button></a>
+    <a href="{% url 'accounts:user_logout' %}"><button>Sair</button></a>
+    <br />
+    <br />
+
     <a href="{% url 'core:home' %}" ><img src="{% static 'img/menu.png' %}" width="200" height="60" /></a>
     <br />
     <a href="{% url 'descriptions:list_descriptions' %}"><button onclick="alertarMensagem()"></button>Descrições</a>
     <a href="{% url 'games:list_games' %}" ><button onclick="alertarMensagem()">Games</button></a>
     <a href="{% url 'players:list_players' %}" ><button onclick="alertarMensagem()">Jogadores</button></a>
     <a href="{% url 'socialnetworks:list_socialnetworks' %}" ><button onclick="alertarMensagem()">Redes Sociais</button></a>
+    <a href="{% url 'supports:list_supports' %}" ><button onclick="alertarMensagem()">Suporte</button></a>
    <a href="{% url 'orders:list_orders' %}" ><button>Pedidos</button></a>
     <a href="{% url 'orders:list_items_games' %}" ><button>Compras</button></a>
     <br />
@@ -26,6 +37,7 @@
       <button type="submit">Buscar</button>
     </form>
 
+    {% endif %}
 
     {% block body %}
     

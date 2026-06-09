@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Lista de Suportes - {{ block.super }}
+
+{% endblock title %}
+
+{% block body %}
+
+<br />
+    <a href="{% url 'supports:add_support' %}">Cadastro de novo Suporte</a>
+<br />
+<br />
+<b>Lista de Suportes</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Endereco</th>
+        <th>Telefone</th>
+        <th>E-mail</th>
+        <th>Salario</th>
+        <th>Cargo</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for support in supports %}
+        <tr>
+            <td>{{ support.id }}</td>
+            <td>{{ support.first_name }}</td>
+            <td>{{ support.last_name }}</td>
+            <td>{{ support.address }}</td>
+            <td>{{ support.phone }}</td>
+            <td>{{ support.email }}</td>
+            <td>{{ support.salary }}</td>
+            <td>{{ support.position }}</td>
+            <td>
+                <a href="{% url 'supports:edit_support' support.id %}">Editar</a>
+            </td>
+            <td>
+                <a href="{% url 'supports:delete_support' support.id %}">Excluir</a>
+            </td>
+        </tr> 
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock body %}
